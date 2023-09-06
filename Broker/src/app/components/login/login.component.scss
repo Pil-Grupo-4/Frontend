@@ -1,0 +1,36 @@
+.formLogin{
+    color: aliceblue;
+    width: 50%;
+    background-color: #1F7A8C;
+    border-radius: 10px;
+    font-size: 20px;
+
+    .formDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        .formLogin-button{
+            background-color: #022B3A;
+            border-radius: 10px;
+            color: aliceblue;
+            border: none;
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 70px;
+            padding-right: 70px;
+            width:max-content;
+            
+        }
+    }
+    
+}
+
+
+:root {
+    --color-verde-oscuro: #022B3A;
+    --color-verde-claro: #1F7A8C;
+    --color-blanco: #FFFFFF;
+    --color-gris: #E1E5F2
+  }
