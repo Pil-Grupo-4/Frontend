@@ -10,6 +10,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
+
+import { FormCompraAccionComponent } from './form-compra-accion/form-compra-accion.component';
+import { CustomInputDirective } from './form-compra-accion/custom-input.directive';
+import { CustomInput2Directive } from './form-compra-accion/custom-input-2.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,14 +27,20 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    FormCompraAccionComponent,
+    CustomInputDirective,
+    CustomInput2Directive,
+    CotizacionesComponent,
     AboutUsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
