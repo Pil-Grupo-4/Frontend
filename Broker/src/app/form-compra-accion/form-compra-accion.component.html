@@ -1,1 +1,164 @@
-<p>form-compra-accion works!</p>
+<div class="contain justify-content-center w-100 d-flex mt-2">
+  <div class="w-75 mb-4">
+    <h2 class="titulo fw-bolder mb-3">Comprar accion</h2>
+    <div class="compraContainer justify-content-center p-3 rounded">
+      <h6 class="fw-bold mt-2">Mercado</h6>
+      <div class="input-group mb-3 w-50">
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>Seleccionar...</option>
+          <option value="1">Argentina</option>
+          <option value="2">EEUU</option>
+          <option value="3">Brasil</option>
+        </select>
+        <div>
+          <label class="d-flex flex-row-reverse align-items-center fw-medium">Plazo normal
+            <input class="form-check-input mt-0" type="radio" value="1" name="inputMercado" id="plazoLabel"
+              aria-label="Checkbox for following text input" checked>
+          </label>
+          <label class="d-flex flex-row-reverse align-items-center fw-medium">C. Inmediato
+            <input class="form-check-input mt-0" type="radio" value="1" name="inputMercado" id="contadoLabel"
+              aria-label="Checkbox for following text input" checked>
+          </label>
+        </div>
+      </div>
+      <h6 class="fw-bold mt-2">Simbolo</h6>
+      <div class="input-group mb-3 w-50">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username">
+          <label for="floatingInputGroup1 " class="fw-normal">Simbolo</label>
+        </div>
+      </div>
+      <div class="input-group mb-3 d-flex flex-column" CustomInput>
+        <h6 class="fw-bold mt-2">Cantidad/Monto</h6>
+        <div class="d-flex flex-row">
+          <div class="input-group-text w-25">
+            <label class="d-flex flex-row-reverse align-items-center fw-medium">Cantidad
+              <input class="form-check-input mt-0" type="radio" value="1" name="input" id="cantidadLabel"
+                aria-label="Checkbox for following text input" checked>
+            </label>
+          </div>
+          <input type="text" class="form-control w-50" aria-label="Text input with checkbox" id="cantidadInput" placeholder="cantidad">
+        </div>
+        <div class="d-flex flex-row">
+          <div class="input-group-text w-25">
+            <label class="d-flex flex-row-reverse align-items-center fw-medium">Monto
+              <input class="form-check-input mt-0" type="radio" value="2" name="input" id="montoLabel"
+                aria-label="Checkbox for following text input">
+            </label>
+          </div>
+          <input type="text" class="form-control w-50" aria-label="Text input with checkbox" id="montoInput" placeholder="monto" disabled>
+        </div>
+      </div>
+      <div class="compraContainer_cantidad d-flex flex-column" CustomInput2>
+        <h6 class="fw-bold mt-2">Modalidad</h6>
+        <div CustomInput2>
+          <div class="form-check flex-row d-flex">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+            <label class="form-check-label fw-medium" for="flexRadioDefault1">
+              Precio mercado
+            </label>
+          </div>
+          <div class="form-check flex-row d-flex">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label fw-medium" for="flexRadioDefault2">
+              Precio Limite
+            </label>
+            <input id="modalidadInput" class="form-control w-25" placeholder="Limite" disabled />
+          </div>
+        </div>
+
+      </div>
+      <h6 class="fw-bold mt-2">Validez</h6>
+      <div class="input-group mb-3 w-50">
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>Seleccionar...</option>
+          <option value="1">Para mañana</option>
+          <option value="2">Hasta el 25 de julio</option>
+          <option value="3">Hasta el 26 de julio</option>
+          <option value="4">Hasta el 27 de julio</option>
+          <option value="5">Hasta el 28 de julio</option>
+          <option value="6">Hatsa el 1 de agosto</option>
+        </select>
+      </div>
+      <div class="w-100 align-items-end d-flex flex-column">
+        <span class="text-secondary fs-4 mb-2">Precio actual: <span class="text-success fw-bold">$ 124.250</span></span>
+       <!--  <span class="justify-content-start text-start w-100">Ultimas transacciones:</span>
+        <table class="table w-100">
+          <thead>
+            <tr>
+              <td scope="col" class="w-25 text-center fw-bold">Cant Compra</td>
+              <td scope="col" class="w-25 text-center fw-bold">Precio Compra</td>
+              <td scope="col" class="w-25 text-center fw-bold">Precio Venta</td>
+              <td scope="col" class="w-25 text-center fw-bold">Cant Venta</td>
+            </tr>
+          </thead>
+          <tbody class="">
+            <tr>
+              <td class="w-25 text-center">6</td>
+              <td class="w-25 text-center" >10280,000</td>
+              <td class="w-25 text-center" >10289,500</td>
+              <td class="w-25 text-center" >1.460</td>
+            </tr>
+            <tr>
+              <td class="w-25 text-center">11</td>
+              <td class="w-25 text-center">10280,000</td>
+              <td class="w-25 text-center">10289,500</td>
+              <td class="w-25 text-center">1.652</td>
+            </tr>
+            <tr>
+              <td class="w-25 text-center">10</td>
+              <td class="w-25 text-center">10280,000</td>
+              <td class="w-25 text-center">10289,500</td>
+              <td class="w-25 text-center">11</td>
+            </tr>
+            <tr>
+              <td class="w-25 text-center">2.263</td>
+              <td class="w-25 text-center">10280,000</td>
+              <td class="w-25 text-center">10289,500</td>
+              <td class="w-25 text-center">44</td>
+            </tr>
+            <tr>
+              <td class="w-25 text-center">1.765</td>
+              <td class="w-25 text-center">10280,000</td>
+              <td class="w-25 text-center">10289,500</td>
+              <td class="w-25 text-center">2200</td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+    </div>
+    <div class="compraContainer_buttons d-flex justify-content-center mt-4">
+      <button type="button" class="btn fw-bold justify-content-center w-25 text-white ">Comprar</button>
+    </div>
+<!--     <br />
+    <h4>Monto disponible para Argentina</h4>
+    <table class="table-succes rounded mb-10" >
+      <tbody >
+        <tr>
+          <td class="border-end">Monto disponible para operaciones en contado inmediato en Peso Argentino</td>
+          <td>AR$ 0,00</td>
+        </tr>
+        <tr>
+          <td class="border-end">Monto disponible para operaciones en 24hs en Peso Argentino </td>
+          <td>AR$0,00</td>
+        </tr>
+        <tr>
+          <td class="border-end">Monto disponible para operaciones en 48hs en Peso Argentino </td>
+          <td>AR$0,00</td>
+        </tr>
+        <tr>
+          <td class="border-end ">Monto disponible para operaciones en contado inmediato en Dólar Estadounidense </td>
+          <td>US$0,00</td>
+        </tr>
+        <tr>
+          <td class="border-end">Monto disponible para operaciones en 24hs en Dólar Estadounidense </td>
+          <td>US$0,00</td>
+        </tr>
+        <tr>
+          <td class="border-end">Monto disponible para operaciones en 48hs en Dólar Estadounidense </td>
+          <td>US$0,00</td>
+        </tr>
+      </tbody>
+    </table> -->
+  </div>
+</div>
