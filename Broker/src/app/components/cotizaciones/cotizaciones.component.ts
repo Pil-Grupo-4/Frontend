@@ -13,7 +13,7 @@ export class CotizacionesComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('assets/data/14-06-23.json').subscribe((data) => {
+    this.http.get('assets/json/14-06-23.json').subscribe((data) => {
       this.datos = data;
     });
   }
