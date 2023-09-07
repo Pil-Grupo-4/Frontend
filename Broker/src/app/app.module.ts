@@ -12,9 +12,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
 
-import { FormCompraAccionComponent } from './form-compra-accion/form-compra-accion.component';
-import { CustomInputDirective } from './form-compra-accion/custom-input.directive';
-import { CustomInput2Directive } from './form-compra-accion/custom-input-2.directive';
+import { FormCompraAccionComponent } from './components/form-compra-accion/form-compra-accion.component';
+import { CustomInputDirective } from './components/form-compra-accion/custom-input.directive';
+import { CustomInput2Directive } from './components/form-compra-accion/custom-input-2.directive';
 import { HttpClientModule } from '@angular/common/http';
 
 
