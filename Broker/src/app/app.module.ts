@@ -9,7 +9,8 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
+    CotizacionesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
