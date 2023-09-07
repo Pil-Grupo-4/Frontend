@@ -4,12 +4,26 @@
     background-color: #1F7A8C;
     border-radius: 10px;
     font-size: 20px;
+    margin: 150px auto;
+    padding: 50px 30px;
+
+    .form-group {
+        margin-bottom: 10px;
+    }
 
     .formDiv{
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
+        p {
+            font-size: 18px;
+            margin-top: 15px;
+            a {
+                text-decoration: none;
+                color: #022B3A;
+            }
+        }
         .formLogin-button{
             background-color: #022B3A;
             border-radius: 10px;
@@ -17,10 +31,8 @@
             border: none;
             font-size: 20px;
             margin-top: 10px;
-            margin-bottom: 10px;
-            padding-left: 70px;
-            padding-right: 70px;
-            width:max-content;
+            padding: 5px 70px;
+            width:100%;
             
         }
     }
@@ -32,5 +44,5 @@
     --color-verde-oscuro: #022B3A;
     --color-verde-claro: #1F7A8C;
     --color-blanco: #FFFFFF;
-    --color-gris: #E1E5F2
+    --color-gris: #E1E5F2;
   }
