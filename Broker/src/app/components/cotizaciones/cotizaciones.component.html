@@ -6,34 +6,32 @@
     <table class="table-custom" no-bootstrap>
       <tr class="table-header">
         <th>Símbolo</th>
-        <th>Último Operado</th>
+        <th class="hide-on-mobile">Último Operado</th>
         <th>Variación Diaria</th>
-        <th>Cantidad Compra</th>
+        <th class="hide-on-mobile">Cantidad Compra</th>
         <th>Precio Compra</th>
         <th>Precio Venta</th>
-        <th>Cantidad Venta</th>
-        <th>Apertura</th>
-        <th>Mínimo</th>
-        <th>Máximo</th>
-        <th>Último Cierre</th>
-        <th>Monto Operado</th>
-        <th></th>
+        <th class="hide-on-mobile">Cantidad Venta</th>
+        <th class="hide-on-tablet">Apertura</th>
+        <th class="hide-on-tablet">Mínimo</th>
+        <th class="hide-on-tablet">Máximo</th>
+        <th class="hide-on-tablet">Último Cierre</th>
+        <th class="hide-on-tablet">Monto Operado</th>
       </tr>
 
       <tr class="table-data" *ngFor="let item of datos.titulos">
         <td>{{ item.simbolo }}</td>
-        <td>{{ item.ultimoPrecio }}</td>
+        <td class="hide-on-mobile">{{ item.ultimoPrecio }}</td>
         <td>{{ item.variacionPorcentual }}%</td>
-        <td>{{ item.puntas? item.puntas.cantidadCompra : '-' }}</td>
+        <td class="hide-on-mobile">{{ item.puntas? item.puntas.cantidadCompra : '-' }}</td>
         <td>{{ item.puntas? item.puntas.precioCompra : '-' }}</td>
         <td>{{ item.puntas? item.puntas.precioVenta : '-' }}</td>
-        <td>{{ item.puntas? item.puntas.cantidadVenta : '-' }}</td>
-        <td>{{ item.puntas? item.apertura : '-' }}</td>
-        <td>{{ item.minimo }}</td>
-        <td>{{ item.maximo }}</td>
-        <td>{{ item.ultimoCierre }}</td>
-        <td>{{ item.volumen }}</td>
-        <td></td>
+        <td class="hide-on-mobile">{{ item.puntas? item.puntas.cantidadVenta : '-' }}</td>
+        <td class="hide-on-tablet">{{ item.puntas? item.apertura : '-' }}</td>
+        <td class="hide-on-tablet">{{ item.minimo }}</td>
+        <td class="hide-on-tablet">{{ item.maximo }}</td>
+        <td class="hide-on-tablet">{{ item.ultimoCierre }}</td>
+        <td class="hide-on-tablet">{{ item.volumen }}</td>
       </tr>
       
     </table>
