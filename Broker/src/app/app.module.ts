@@ -11,7 +11,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormCompraAccionComponent } from './form-compra-accion/form-compra-accion.component';
 import { CustomInputDirective } from './form-compra-accion/custom-input.directive';
 import { CustomInput2Directive } from './form-compra-accion/custom-input-2.directive';
-
+import { HttpClientModule } from '@angular/common/http';
+import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,16 @@ import { CustomInput2Directive } from './form-compra-accion/custom-input-2.direc
     FormCompraAccionComponent,
     CustomInputDirective,
     CustomInput2Directive,
+    CotizacionesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
