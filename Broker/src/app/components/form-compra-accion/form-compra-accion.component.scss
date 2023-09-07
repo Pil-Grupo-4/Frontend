@@ -11,3 +11,8 @@
 table{
     background-color: #e1e5f282;
 }
+
+:host {
+    min-height: 80vh;
+    display: block;
+}

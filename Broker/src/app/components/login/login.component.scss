@@ -40,6 +40,11 @@
 }
 
 
+:host{
+    min-height: 70vh;
+    display: block;
+}
+
 :root {
     --color-verde-oscuro: #022B3A;
     --color-verde-claro: #1F7A8C;
