@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 import { FormCompraAccionComponent } from './components/form-compra-accion/form-compra-accion.component';
 import { CustomInputDirective } from './components/form-compra-accion/custom-input.directive';
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+    LandingComponent,
     DashboardComponent,
     NavbarComponent,
     FooterComponent,

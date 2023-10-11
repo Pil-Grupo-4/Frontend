@@ -6,6 +6,7 @@ import { FormCompraAccionComponent } from './components/form-compra-accion/form-
 import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'compra', component: FormCompraAccionComponent},
   {path:'cotizaciones', component: CotizacionesComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'aboutUs', component: AboutUsComponent}
+  {path: 'aboutUs', component: AboutUsComponent},
+  {path: 'landing', component: LandingComponent},
 ];
 
 @NgModule({
