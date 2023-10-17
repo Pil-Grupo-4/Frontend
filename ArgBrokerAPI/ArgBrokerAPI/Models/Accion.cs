@@ -4,7 +4,7 @@ namespace ArgBrokerAPI.Models
 {
     public class Accion
     {
-        [Key] 
+        [Key]
         public int IdAccion { get; set; }
         public string Simbolo { get; set; }
         public string Descripcion { get; set; }

@@ -25,11 +25,14 @@ namespace ArgBrokerAPI.Controllers
             return Ok(UsersList);
         }
 
+        
+
         // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult>Get(int id)
         {
-            return "value";
+            var UsersList = await _userService.GetUserById(id);
+            return Ok(User);
         }
 
         // POST api/<UsuarioController>
@@ -39,13 +42,45 @@ namespace ArgBrokerAPI.Controllers
             var postUser = await _userService.PostNewUser(newUser);
             return postUser;  //este llama al metodo GetUser y nos devuelve el usuario recien creado
         }
-
         // PUT api/<UsuarioController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutUser(int id, [FromBody] Usuario updatedUser)
         {
+            try
+            {
+                var updated = await _userService.UpdateUser(updatedUser);
+                return Ok(updated);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hubo un error al actualizar el usuario: {ex.Message}");
+            }
         }
 
+        [HttpGet("login")]
+        public async Task<IActionResult> Login(string correo, string contraseña)
+        {
+            try
+            {
+                // Aquí debes implementar la lógica para verificar las credenciales.
+                // Puedes llamar a un método de servicio que verifique si el correo y la contraseña son válidos.
+                var user = await _userService.ValidateUserCredentials(correo, contraseña);
+
+                if (user != null)
+                {
+                    // Devuelve el usuario como parte de la respuesta
+                    return Ok(user);
+                }
+                else
+                {
+                    return BadRequest("Credenciales incorrectas");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hubo un error en el inicio de sesión: {ex.Message}");
+            }
+        }
 
     }
 }

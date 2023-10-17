@@ -11,7 +11,6 @@
                 placeholder="correo@correo.com" 
                 required
             >
-            <!-- Mensaje de validación para el email -->
             <div *ngIf="formLogin.controls.email.invalid && (formLogin.controls.email.dirty && formLogin.controls.email.touched)">
                 <small class="text-danger">
                     El email debe tener la nomenclatura habitual (correo@correo.com).
@@ -27,9 +26,8 @@
                 name="password" 
                 placeholder="contraseña" 
                 required
-                minlength="6"> <!-- Agregamos el atributo 'minlength' para validar la longitud mínima -->
-         
-            <!-- Mensaje de validación para la contraseña -->
+                minlength="6"
+            >
             <div *ngIf="formLogin.controls.password.invalid && (formLogin.controls.password.dirty && formLogin.controls.password.touched)">
                 <small class="text-danger">
                     La contraseña debe tener al menos 6 caracteres.
