@@ -23,15 +23,8 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<UserService,UserServiceImp>();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: "CorsPolicy", builder =>
-    {
-        builder.AllowAnyOrigin(); // PERMITE DESDE CUALQUIER ORGIEN
-        builder.AllowAnyMethod(); // CUALQUIER METODO GET, PUT , DROP
-        builder.AllowAnyHeader(); // CUALQUIER CABECERA 
-    });
-});
+
+
 builder.Services.AddCors(options => {
     options.AddPolicy(name: "CorsPolicy", builder => {
         builder.AllowAnyOrigin(); // PERMITE DESDE CUALQUIER ORGIEN
