@@ -37,6 +37,13 @@ h1{
     padding-bottom: 20px;
     text-shadow: 2px 2px #025979;
 }
+
+.title{
+    color: #0e85b1;
+    font-size: 110px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px #025979;
+}
 em{
     color: #0e85b1;
     font-size: 46px;
@@ -101,12 +108,7 @@ em{
     width: 520px;
     right: 490px;
 }
-#icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 590px;
-}
+
 .bi-wallet,.bi-bank,.bi-graph-up-arrow, .seo{
     display: start;
     width: 40px;
