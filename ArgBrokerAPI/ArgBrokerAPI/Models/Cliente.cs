@@ -7,6 +7,7 @@ namespace ArgBrokerAPI.Models
         [Key]
         public int IdCliente { get; set; }
         public int IdUsuario { get; set; }
+        public decimal Dinero { get; set; }
 
         public Usuario Usuario { get; set; }
     }

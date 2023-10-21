@@ -8,14 +8,14 @@ namespace ArgBrokerAPI.Models
         [Key]
         public int IdCompra { get; set; }
         public int IdCliente { get; set; }
-        public int IdAccion { get; set; }
+        public string Simbolo { get; set; }
         public int Comision { get; set; }
         public double Cantidad { get; set; }
         public decimal Precio { get; set; }
         public DateTime Fecha { get; set; }
 
         public Cliente Cliente { get; set; }
-        public Accion Accion { get; set; }
+
     }
 
 }
