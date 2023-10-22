@@ -13,7 +13,6 @@ namespace ArgBrokerAPI.DataSet
 
         public DbSet<Compra> Compras { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Accion> Acciones { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
     }
 }
