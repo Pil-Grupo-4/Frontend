@@ -15,7 +15,6 @@ namespace ArgBrokerAPI.Models
         public DateTime Fecha { get; set; }
 
         public Cliente Cliente { get; set; }
-
     }
 
 }
