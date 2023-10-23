@@ -3,6 +3,7 @@ using ArgBrokerAPI.Services;
 using ArgBrokerAPI.Services.Imp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,10 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<UserService,UserServiceImp>();
+builder.Services.AddScoped<ClienteService, ClienteServiceImp>();
+builder.Services.AddScoped<CompraService, CompraServiceImp>();
+
+
 
 
 builder.Services.AddCors(options =>
@@ -34,7 +39,6 @@ builder.Services.AddCors(options =>
         builder.AllowAnyHeader(); // CUALQUIER CABECERA 
     });
 });
-
 
 var app = builder.Build();
 

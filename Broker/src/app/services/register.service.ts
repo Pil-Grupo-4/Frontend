@@ -5,24 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RegisterService {
+  private apiUrl = 'https://localhost:7037/api/Cliente'; // Definir la URL de tu endpoint
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  URL_USER = '';
-
-  postRegister(user: UserPost){
-      return this.http.post<UserPost>(this.URL_USER, user);
+  // Método para realizar la solicitud de registro
+  registerUser(userData: any) {
+    return this.http.post(this.apiUrl, userData);
   }
-
 }
-
-class UserPost {
-  nombre: string;
-  apellido: string;
-  dni: number;
-  correo: string;
-  nacimiento: string;
-  contraseña: string;
-  telefono: string;
-}
-  
