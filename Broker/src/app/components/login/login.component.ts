@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service'; // Importa el servicio de inicio de sesión
 
 @Component({
   selector: 'app-login',
@@ -7,26 +9,35 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  mostrarMsgError: boolean = false;
+  msgError: string = "";
 
-  
-
-
-  formLogin = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private loginService: LoginService // Inyecta el servicio de inicio de sesión
+  ) {}
+  formLogin = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
-
+  
 
   enviarFormulario() {
     if (this.formLogin.valid) {
-      //SENTENCIA PARA ENVIAR EL FORMULARIO, DESPUES EN EL BACK SE COMPRUEBA SI EXISTE EL USUARIO
-      alert('Login exitoso');
-    }
-    else{
-      alert('Error en el login');
+      const formData = this.formLogin.value;
+console.log(formData)
+      this.loginService.login(formData).subscribe(
+        (response) => {
+
+          this.router.navigate(['/dashboard']);
+
+        },
+        (error) => {
+          this.mostrarMsgError = true;
+          this.msgError = 'Error al registrar: ' + error.message;
+        }
+      );
     }
   }
-
 }
-
-
