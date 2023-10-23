@@ -1,5 +1,4 @@
-﻿using ArgBrokerAPI.Models;
-
+﻿using ArgBrokerAPI.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 

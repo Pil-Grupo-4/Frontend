@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     name:['', Validators.required],
     birthDate:['', Validators.required],
     email:['', [Validators.required, Validators.email]],
-    password:['', Validators.required]
+    password:['', Validators.required,Validators.minLength(6)]
   })
 
   constructor(private formBuilder: FormBuilder, private router: Router) { }

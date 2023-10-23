@@ -3,6 +3,7 @@ using ArgBrokerAPI.Services;
 using ArgBrokerAPI.Services.Imp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,15 +24,22 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<UserService,UserServiceImp>();
+builder.Services.AddScoped<ClienteService, ClienteServiceImp>();
+builder.Services.AddScoped<CompraService, CompraServiceImp>();
 
 
-builder.Services.AddCors(options => {
-    options.AddPolicy(name: "CorsPolicy", builder => {
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CorsPolicy", builder =>
+    {
         builder.AllowAnyOrigin(); // PERMITE DESDE CUALQUIER ORGIEN
         builder.AllowAnyMethod(); // CUALQUIER METODO GET, PUT , DROP
         builder.AllowAnyHeader(); // CUALQUIER CABECERA 
     });
 });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
