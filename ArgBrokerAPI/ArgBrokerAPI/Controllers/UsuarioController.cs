@@ -1,6 +1,8 @@
 ﻿using ArgBrokerAPI.Models;
+using ArgBrokerAPI.Models.DTOs;
 using ArgBrokerAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Plugins;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,27 +27,18 @@ namespace ArgBrokerAPI.Controllers
             return Ok(UsersList);
         }
 
-        // GET api/<UsuarioController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("usuario/login")]
+        public async Task<IActionResult> LogUser(UsuarioLoginDTO userLoginDto)
         {
-            return "value";
+            try
+            {
+                var user = await _userService.LogginUser(userLoginDto);
+                return Ok(user);
+            }
+            catch (Exception ex) { 
+                return BadRequest(ex.Message);
+            }
         }
-
-        // POST api/<UsuarioController>
-        [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUser([FromBody] Usuario newUser)
-        {
-            var postUser = await _userService.PostNewUser(newUser);
-            return postUser;  //este llama al metodo GetUser y nos devuelve el usuario recien creado
-        }
-
-        // PUT api/<UsuarioController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
 
     }
 }

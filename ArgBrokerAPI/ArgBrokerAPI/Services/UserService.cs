@@ -1,4 +1,5 @@
-﻿using ArgBrokerAPI.Models;
+﻿using ArgBrokerAPI.Models.DTOs;
+using ArgBrokerAPI.Models.Entities;
 
 namespace ArgBrokerAPI.Services
 {
@@ -6,5 +7,7 @@ namespace ArgBrokerAPI.Services
     {
         Task<IEnumerable <Usuario>> GetAllUsers();
         Task<Usuario> PostNewUser(Usuario newUser);
+        
+        Task<Usuario> LogginUser(UsuarioLoginDTO logUser);
     }
 }
