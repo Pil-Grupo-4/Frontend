@@ -8,6 +8,7 @@ namespace ArgBrokerAPI.Models.Entities
     {
         [Key]
         public int IdCompra { get; set; }
+
         public string Simbolo { get; set; }
         public int Comision { get; set; }
         public double Cantidad { get; set; }
@@ -16,6 +17,7 @@ namespace ArgBrokerAPI.Models.Entities
 
             [ForeignKey("Cliente")]
             public int IdCliente { get; set; }
+
     }
 
 }
