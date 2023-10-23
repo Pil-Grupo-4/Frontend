@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {}
+    "D:\\ProyectoPolitecnico\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {
+    "D:\\ProyectoPolitecnico\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+        "projectUniqueName": "D:\\ProyectoPolitecnico\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
         "projectName": "ArgBrokerAPI",
-        "projectPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
-        "packagesPath": "C:\\Users\\Juani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\obj\\",
+        "projectPath": "D:\\ProyectoPolitecnico\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+        "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectoPolitecnico\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Juani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joaqu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,8 +61,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -74,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.318\\RuntimeIdentifierGraph.json"
         }
       }
     }
