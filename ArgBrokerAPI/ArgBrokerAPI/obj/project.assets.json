@@ -11321,19 +11321,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Juani\\.nuget\\packages\\": {}
+    "C:\\Users\\Lijuncos\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repo\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Lijuncos\\Desktop\\Broker - Pil Grupo 4\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
       "projectName": "ArgBrokerAPI",
-      "projectPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repo\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
-      "packagesPath": "C:\\Users\\Juani\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repo\\ArgBrokerAPI\\ArgBrokerAPI\\obj\\",
+      "projectPath": "C:\\Users\\Lijuncos\\Desktop\\Broker - Pil Grupo 4\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+      "packagesPath": "C:\\Users\\Lijuncos\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Lijuncos\\Desktop\\Broker - Pil Grupo 4\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Juani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Lijuncos\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11397,7 +11397,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

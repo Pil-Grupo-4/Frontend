@@ -7,6 +7,7 @@ import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.co
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'aboutUs', component: AboutUsComponent},
   {path: 'landing', component: LandingComponent},
+  {path: 'userupdate', component: UserupdateComponent}
 ];
 
 @NgModule({
