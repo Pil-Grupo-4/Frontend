@@ -3,8 +3,10 @@
     "",
     "\\ArgBrokerAPI",
     "\\ArgBrokerAPI\\ArgBrokerAPI",
-    "\\ArgBrokerAPI\\ArgBrokerAPI\\Controllers"
+    "\\ArgBrokerAPI\\ArgBrokerAPI\\Controllers",
+    "\\ArgBrokerAPI\\ArgBrokerAPI\\Models",
+    "\\ArgBrokerAPI\\ArgBrokerAPI\\Models\\Entities"
   ],
-  "SelectedNode": "\\ArgBrokerAPI\\ArgBrokerAPI.sln",
+  "SelectedNode": "\\ArgBrokerAPI\\ArgBrokerAPI\\Models\\Entities\\Compra.cs",
   "PreviewInSolutionExplorer": false
 }
