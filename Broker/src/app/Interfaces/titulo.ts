@@ -1,4 +1,6 @@
-interface Titulo {
+import { Puntas } from "./puntas";
+
+export class Titulo {
     simbolo: string;
     puntas: Puntas;
     ultimoPrecio: number;

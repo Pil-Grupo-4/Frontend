@@ -3,11 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EventListenerObject } from 'rxjs/internal/observable/fromEvent';
 import { Usuario } from 'src/app/Interfaces/usuario';
-
-interface Titulo {
-  simbolo: string;
-  // Define aquí todas las demás propiedades del objeto
-}
+import { Puntas } from 'src/app/Interfaces/puntas';
+import { Titulo } from 'src/app/Interfaces/titulo'; 
 
 @Component({
   selector: 'app-form-compra-accion',
@@ -22,6 +19,11 @@ export class FormCompraAccionComponent implements OnInit {
   monto: number = 0; // Monto calculado
   precioAccion: number = 0; // Precio de la acción seleccionada
   selectedItem: object;
+
+  precioAccionSeleccionada: number=0;
+  puntas:Puntas= {    cantidadCompra: 0,precioCompra: 0, precioVenta: 0,cantidadVenta: 0};
+  accionSelec: Titulo = { simbolo: "", puntas: { cantidadCompra: 0, precioCompra: 0, precioVenta: 0, cantidadVenta: 0 }, ultimoPrecio: 0, variacionPorcentual: 0, apertura: 0, maximo: 0, minimo: 0, ultimoCierre: 0, volumen: 0, cantidadOperaciones: 0, fecha: "", tipoOpcion: null, precioEjercicio: null, fechaVencimiento: null, mercado: "", moneda: "", descripcion: "", plazo: "", laminaMinima: 0, lote: 0 };
+
 
 
 
@@ -39,7 +41,8 @@ miMetodo(event: EventListenerObject<Titulo[]>) {
 
     for (const item of this.datos.titulos) {
       if (item === selectedValue) {
-        this.selectedItem = item;
+        this.selectedItem = item
+        this.accionSelec = item 
         return this.selectedItem;
       }
   }

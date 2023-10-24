@@ -1,4 +1,4 @@
-interface Puntas {
+export interface Puntas {
     cantidadCompra: number;
     precioCompra: number;
     precioVenta: number;
