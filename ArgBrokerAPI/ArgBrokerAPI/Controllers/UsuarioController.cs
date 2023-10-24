@@ -40,10 +40,11 @@ namespace ArgBrokerAPI.Controllers
             return postUser;  //este llama al metodo GetUser y nos devuelve el usuario recien creado
         }
 
-        // PUT api/<UsuarioController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<Usuario> PutAsync(int id, [FromBody] Usuario putUser)
         {
+            var user = await _userService.PutUser(putUser, id);
+            return user;
         }
 
 
