@@ -10,6 +10,7 @@ import { LandingComponent } from './components/landing/landing.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path:'compra', component: FormCompraAccionComponent},

@@ -36,7 +36,6 @@ export class DashboardComponent{
         this.checkScreenSize();
         
         this.listCompras.forEach((compra) => {
-            //itero para sacar el total de fondos y la daily gain (es 0)
             this.totalFunds = this.totalFunds + (compra.precio*compra.cantidad);
         });
     }
