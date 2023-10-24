@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { Usuario } from '../usuario';
+import { Usuario } from '../Interfaces/usuario';
 import { tap, map } from 'rxjs/operators'; // Importa 'map' junto con 'tap'
 
 @Injectable({
