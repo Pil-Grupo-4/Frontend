@@ -17,6 +17,7 @@ namespace ArgBrokerAPI.Models.Entities
 
             [ForeignKey("Cliente")]
             public int IdCliente { get; set; }
+            public Cliente Cliente { get; set;}
 
     }
 

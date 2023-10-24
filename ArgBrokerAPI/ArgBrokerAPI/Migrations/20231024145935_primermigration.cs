@@ -6,29 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArgBrokerAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class primerMigration : Migration
+    public partial class primermigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Compras",
-                columns: table => new
-                {
-                    IdCompra = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Simbolo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Comision = table.Column<int>(type: "int", nullable: false),
-                    Cantidad = table.Column<double>(type: "float", nullable: false),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdCliente = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Compras", x => x.IdCompra);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
@@ -68,20 +50,50 @@ namespace ArgBrokerAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Compras",
+                columns: table => new
+                {
+                    IdCompra = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Simbolo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Comision = table.Column<int>(type: "int", nullable: false),
+                    Cantidad = table.Column<double>(type: "float", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdCliente = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compras", x => x.IdCompra);
+                    table.ForeignKey(
+                        name: "FK_Compras_Clientes_IdCliente",
+                        column: x => x.IdCliente,
+                        principalTable: "Clientes",
+                        principalColumn: "IdCliente",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Clientes_UsuarioId",
                 table: "Clientes",
                 column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Compras_IdCliente",
+                table: "Compras",
+                column: "IdCliente");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Compras");
 
             migrationBuilder.DropTable(
-                name: "Compras");
+                name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
