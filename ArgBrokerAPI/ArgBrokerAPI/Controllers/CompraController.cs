@@ -38,6 +38,12 @@ namespace ArgBrokerAPI.Controllers
             return "value";
         }
 
+        [HttpGet("ComprasByClient/{clientid}")]
+        public async Task<ActionResult<List<Compra>>> GetCompras(int clientid)
+        {
+            return await _compraService.GetCompras(clientid);
+        }
+
         // POST api/<CompraController>
         [HttpPost("registro-compra")]
         public async Task<ActionResult<Compra>> PostUser([FromBody] Compra newCompra)
