@@ -21,6 +21,7 @@
         <div class="botones__header">
           <button *ngIf="!mostrarBotones"class="button me-2" routerLink="login">Iniciar Sesion</button>
           <button *ngIf="!mostrarBotones"class="button ms-2" routerLink="register">Registrarse</button>
+          <button *ngIf="mostrarBotones" class="button ms-2" (click)="cerrarSesion()">Cerrar Sesión</button>
           <!-- <button *ngIf="!mostrarBotones"class="button me-2" routerLink="CerrarSesion">Iniciar Sesion</button> -->
         </div>
       </div>

@@ -30,7 +30,6 @@ export class LoginComponent {
 
       this.loginService.login(formData).subscribe(
         (response) => {
-          this.loginService.GuardarUserLogeado(response);
           this.router.navigate(['/dashboard']);
 
         },
