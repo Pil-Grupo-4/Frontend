@@ -1,6 +1,8 @@
 ﻿using ArgBrokerAPI.DataSet;
 using ArgBrokerAPI.Models.Entities;
 using ArgBrokerAPI.Services;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 
 public class CompraServiceImp : CompraService
 {
@@ -11,6 +13,11 @@ public class CompraServiceImp : CompraService
     {
         _dbContext = dbContext;
         _clienteService = clienteService;
+    }
+
+    public async Task<List<Compra>> GetCompras(int id){
+        var listaCompras = await _dbContext.Compras.Where(compra => compra.IdCliente == id).ToListAsync();
+        return listaCompras;
     }
 
     public async Task<Compra> PostNewCompra(Compra newCompra)
