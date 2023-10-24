@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/login.service'; // Importa el servicio de inicio de sesión
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private loginService: LoginService 
+    private loginService: LoginService // Inyecta el servicio de inicio de sesión
   ) {}
   formLogin = this.formBuilder.group({
     correo: ['', [Validators.required, Validators.email]],

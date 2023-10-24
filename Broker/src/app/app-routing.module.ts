@@ -10,14 +10,13 @@ import { LandingComponent } from './components/landing/landing.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'compra', component: FormCompraAccionComponent },
-  { path: 'cotizaciones', component: CotizacionesComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'landing', component: LandingComponent },
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
+  {path:'compra', component: FormCompraAccionComponent},
+  {path:'cotizaciones', component: CotizacionesComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'aboutUs', component: AboutUsComponent},
+  {path: 'landing', component: LandingComponent},
 ];
 
 @NgModule({
