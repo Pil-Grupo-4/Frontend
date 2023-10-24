@@ -18,7 +18,7 @@ export class LoginComponent {
     private loginService: LoginService // Inyecta el servicio de inicio de sesión
   ) {}
   formLogin = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
+    correo: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
   
@@ -26,10 +26,11 @@ export class LoginComponent {
   enviarFormulario() {
     if (this.formLogin.valid) {
       const formData = this.formLogin.value;
-console.log(formData)
+      console.log(this.loginService.login(formData))  //borrar 
+
       this.loginService.login(formData).subscribe(
         (response) => {
-
+          this.loginService.GuardarUserLogeado(response);
           this.router.navigate(['/dashboard']);
 
         },

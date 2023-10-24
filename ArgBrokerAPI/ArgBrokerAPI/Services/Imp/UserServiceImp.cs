@@ -42,7 +42,7 @@ namespace ArgBrokerAPI.Services.Imp
             {
                 Usuario user = _dbContext.Usuarios.FirstOrDefault(u => u.Correo == logUser.Correo);
 
-                if (user == null || logUser.Contraseña != user.Contraseña)
+                if (user == null || logUser.password != user.Contraseña)
                 {
                     // Si el usuario no existe o la contraseña no coincide, lanza una excepción.
                     throw new Exception("Credenciales incorrectas");

@@ -2,17 +2,17 @@
     <h3 class="mb-4">Iniciar Sesión</h3>
     <form id="form-login" [formGroup]="formLogin" (ngSubmit)="enviarFormulario()">
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input formControlName="email" 
-                type="email" 
+            <label for="correo">Correo:</label>
+            <input formControlName="correo" 
+                type="correo" 
                 class="form-control" 
-                id="email" 
-                name="email" 
+                id="correo" 
+                name="correo" 
                 placeholder="correo@correo.com" 
                 required
             >
             <!-- Mensaje de validación para el email -->
-            <div *ngIf="formLogin.controls.email.invalid && (formLogin.controls.email.dirty && formLogin.controls.email.touched)">
+            <div *ngIf="formLogin.controls.correo.invalid && (formLogin.controls.correo.dirty && formLogin.controls.correo.touched)">
                 <small class="text-danger">
                     El email debe tener la nomenclatura habitual (correo@correo.com).
                 </small>
@@ -24,7 +24,7 @@
                 type="password" 
                 class="form-control" 
                 id="password" 
-                name="password" 
+                name="contraseña" 
                 placeholder="contraseña" 
                 required
                 minlength="6"> <!-- Agregamos el atributo 'minlength' para validar la longitud mínima -->

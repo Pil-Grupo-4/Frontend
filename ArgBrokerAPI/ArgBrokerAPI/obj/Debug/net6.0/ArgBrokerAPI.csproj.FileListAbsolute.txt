@@ -619,3 +619,4 @@ C:\Users\Juani\Desktop\Kd Soft\ISPC\repo\ArgBrokerAPI\ArgBrokerAPI\obj\Debug\net
 C:\Users\Juani\Desktop\Kd Soft\ISPC\repo\ArgBrokerAPI\ArgBrokerAPI\obj\Debug\net6.0\ArgBrokerAPI.pdb
 C:\Users\Juani\Desktop\Kd Soft\ISPC\repo\ArgBrokerAPI\ArgBrokerAPI\obj\Debug\net6.0\ArgBrokerAPI.genruntimeconfig.cache
 C:\Users\Juani\Desktop\Kd Soft\ISPC\repo\ArgBrokerAPI\ArgBrokerAPI\obj\Debug\net6.0\ref\ArgBrokerAPI.dll
+C:\Users\Juani\Desktop\Kd Soft\ISPC\repo\ArgBrokerAPI\ArgBrokerAPI\bin\Debug\net6.0\Newtonsoft.Json.Schema.dll

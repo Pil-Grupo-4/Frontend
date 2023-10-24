@@ -8,7 +8,7 @@ namespace ArgBrokerAPI.Models.Entities
     {
         [Key]
         public int IdCompra { get; set; }
-
+        public string Nombre { get; set; }
         public string Simbolo { get; set; }
         public int Comision { get; set; }
         public double Cantidad { get; set; }
