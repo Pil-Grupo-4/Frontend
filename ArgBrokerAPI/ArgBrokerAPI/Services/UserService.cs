@@ -6,5 +6,6 @@ namespace ArgBrokerAPI.Services
     {
         Task<IEnumerable <Usuario>> GetAllUsers();
         Task<Usuario> PostNewUser(Usuario newUser);
+        Task<Usuario> PutUser(Usuario user, int id);
     }
 }
