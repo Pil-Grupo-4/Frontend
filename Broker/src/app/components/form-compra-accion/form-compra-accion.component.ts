@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { EventListenerObject } from 'rxjs/internal/observable/fromEvent';
+import { Usuario } from 'src/app/Interfaces/usuario';
 
 interface Titulo {
   simbolo: string;
@@ -19,11 +21,12 @@ export class FormCompraAccionComponent implements OnInit {
   cantidad: number = 0; // Cantidad de acciones
   monto: number = 0; // Monto calculado
   precioAccion: number = 0; // Precio de la acción seleccionada
-  selectedItem: any;
+  selectedItem: object;
 
-  
+
 
   constructor(private http: HttpClient) { }
+
 
   ngOnInit(): void {
     this.http.get('assets/json/14-06-23.json').subscribe((data) => {
@@ -31,16 +34,17 @@ export class FormCompraAccionComponent implements OnInit {
     });
   }
 
-  miMetodo(event: Event) {
-    // Obtén el valor seleccionado
-    const selectedValue = (event.target as HTMLSelectElement).value;
-  
-    // Encuentra el objeto correspondiente en el arreglo titulos
-    this.selectedItem = this.datos.titulos.find(item => item.simbolo === selectedValue);
-  
-    console.log('Elemento seleccionado:', this.selectedItem);
-  }
+miMetodo(event: EventListenerObject<Titulo[]>) {
+    const selectedValue = event;
 
+    for (const item of this.datos.titulos) {
+      if (item === selectedValue) {
+        this.selectedItem = item;
+        return this.selectedItem;
+      }
+  }
+  return this.selectedItem;
+}
 
   calcularMonto() {
     if (this.cantidad > 0 && this.precioAccion > 0) {
@@ -49,7 +53,7 @@ export class FormCompraAccionComponent implements OnInit {
       this.monto = 0;
     }
   }
-  
+
   calcularCantidad() {
     if (this.monto > 0 && this.precioAccion > 0) {
       this.cantidad = this.monto / this.precioAccion;
