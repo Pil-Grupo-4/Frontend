@@ -1,5 +1,6 @@
 ﻿using ArgBrokerAPI.Models;
 using ArgBrokerAPI.Models.DTOs;
+using ArgBrokerAPI.Models.Entities;
 using ArgBrokerAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Plugins;

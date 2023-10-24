@@ -40,45 +40,53 @@ namespace ArgBrokerAPI.Services.Imp
         {
             try
             {
-                Usuario user = _dbContext.Usuarios.FirstOrDefault(u => u.Correo == logUser.Correo);
+                Usuario user =  _dbContext.Usuarios.FirstOrDefault(u => u.Correo == logUser.Correo);
 
                 if (user == null || logUser.password != user.Contraseña)
                 {
                     // Si el usuario no existe o la contraseña no coincide, lanza una excepción.
                     throw new Exception("Credenciales incorrectas");
                 }
-
-                public async Task<Usuario> PutUser(Usuario user, int id)
-                {
-                    try
-                    {
-                        var userToUpdate = await _dbContext.Usuarios.FindAsync(id);
-
-                        if (userToUpdate != null)
-                        {
-                            userToUpdate.IdUsuario = id;
-                            userToUpdate.Nombre = user.Nombre;
-                            userToUpdate.Apellido = user.Apellido;
-                            userToUpdate.Dni = user.Dni;
-                            userToUpdate.Correo = user.Correo;
-                            userToUpdate.Nacimiento = user.Nacimiento;
-                            userToUpdate.Contraseña = user.Contraseña;
-                            userToUpdate.Telefono = user.Telefono;
-                        }
-                        else
-                        {
-                            throw new ApplicationException("No se encontro el usuario.");
-                        }
-                        _dbContext.Usuarios.Update(userToUpdate);
-                        await _dbContext.SaveChangesAsync();
-                        return user;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new ApplicationException("Hubo un error al actualizar el usuario.", ex);
-                    }
-                }
+                return user;
             }
-}
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message, ex);
+            }
+        }
+
+        public async Task<Usuario> PutUser(Usuario user, int id)
+        {
+            try
+            {
+                var userToUpdate = await _dbContext.Usuarios.FindAsync(id);
+
+                if (userToUpdate != null)
+                {
+                    userToUpdate.IdUsuario = id;
+                    userToUpdate.Nombre = user.Nombre;
+                    userToUpdate.Apellido = user.Apellido;
+                    userToUpdate.Dni = user.Dni;
+                    userToUpdate.Correo = user.Correo;
+                    userToUpdate.Nacimiento = user.Nacimiento;
+                    userToUpdate.Contraseña = user.Contraseña;
+                    userToUpdate.Telefono = user.Telefono;
+                }
+                else
+                {
+                    throw new ApplicationException("No se encontro el usuario.");
+                }
+                _dbContext.Usuarios.Update(userToUpdate);
+                await _dbContext.SaveChangesAsync();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Hubo un error al actualizar el usuario.", ex);
+            }
+        }
     }
+
+
 }
+

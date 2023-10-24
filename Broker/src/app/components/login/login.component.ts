@@ -31,6 +31,7 @@ export class LoginComponent {
       this.loginService.login(formData).subscribe(
         (response) => {
           this.router.navigate(['/dashboard']);
+          console.log("redirige");
 
         },
         (error) => {
