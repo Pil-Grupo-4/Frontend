@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 public class ClienteServiceImp : ClienteService
 {
     private readonly argBrokerDbContext _dbContext;
-    private readonly UserService userService;
 
-    public ClienteServiceImp(argBrokerDbContext dbContext, UserService userService)
+
+    public ClienteServiceImp(argBrokerDbContext dbContext)
     {
         _dbContext = dbContext;
-        this.userService = userService;
+
     }
 
     public async Task<decimal> GetDineroByClientId(int idCliente)
@@ -35,11 +35,11 @@ public class ClienteServiceImp : ClienteService
         }
     }
 
-    public async Task<Cliente> RegisterNewClient(Cliente newCliente)
+    public async Task<Cliente> RegisterNewClient(Usuario newUsuario)
     {
         try
         {
-            Usuario userInserted = await userService.PostNewUser(newCliente.Usuario);
+            Usuario userInserted = await _dbContext.Usuarios.FindAsync(newUsuario.IdUsuario);
 
             var newClient = new Cliente
             {

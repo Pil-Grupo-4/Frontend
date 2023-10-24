@@ -8,11 +8,12 @@ namespace ArgBrokerAPI.Services.Imp
     public class UserServiceImp : UserService
     {
         private readonly argBrokerDbContext _dbContext;
+        private readonly ClienteService _clienteService;
 
-
-        public UserServiceImp(argBrokerDbContext dbContext)
+        public UserServiceImp(argBrokerDbContext dbContext, ClienteService clienteService)
         {
             _dbContext = dbContext;
+            _clienteService = clienteService;
         }
 
         public async Task<IEnumerable<Usuario>> GetAllUsers()
@@ -28,6 +29,7 @@ namespace ArgBrokerAPI.Services.Imp
             {
                 _dbContext.Add(newUser);
                 await _dbContext.SaveChangesAsync();
+                await _clienteService.RegisterNewClient(newUser);
                 return newUser;
             }
             catch (Exception ex)

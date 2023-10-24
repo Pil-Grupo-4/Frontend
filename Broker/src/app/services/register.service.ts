@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RegisterService {
-  private apiUrl = 'https://localhost:7037/api/Cliente'; // Definir la URL de tu endpoint
+  private apiUrl = 'https://localhost:7037/api/Usuario'; // Definir la URL de tu endpoint
 
   constructor(private http: HttpClient) {}
 

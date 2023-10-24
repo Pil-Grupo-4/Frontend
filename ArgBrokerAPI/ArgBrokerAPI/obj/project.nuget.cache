@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FFgSvatjJyEl/a8UPu90ATUc7iksJY5NIjp4SRf2dnKagmvvjUTSmivl0H7seCohE2xK1usoN0nCwpjotBCsvQ==",
+  "dgSpecHash": "gQqDGJ2D/R5N5OoyKB9oCQTt3BgZtH0beYsHocq0HC0+avUILaY3UaYI2Qv62O8XkuRO/cdIu9GZvRMs5f8HgQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repo\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+  "projectFilePath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Juani\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
