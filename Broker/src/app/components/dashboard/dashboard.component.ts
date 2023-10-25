@@ -1,6 +1,6 @@
-import { Component,EventEmitter,HostListener,Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import jsonStock from "./jsonStocks/23-08-23.json";
-import {DashboardService} from '../../services/dashboard.service';
+import { DashboardService } from '../../services/dashboard.service';
 
 
 @Component({
@@ -8,38 +8,36 @@ import {DashboardService} from '../../services/dashboard.service';
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent{
-    
-    listCompras : Compra[] = []
-    availableFunds : number = 2000;
-    totalFunds : number = 2000;
-    dailyGains : number = 0;
-    isMobile : boolean = false;
-    private dashbServ : DashboardService;
-    
+export class DashboardComponent {
+
+    listCompras: Compra[] = []
+    availableFunds: number = 2000;
+    totalFunds: number = 2000;
+    dailyGains: number = 0;
+    isMobile: boolean = false;
+    private dashbServ: DashboardService;
+
     //Traerme el saldo del usuario y guardarlo en availableFunds y totalFunds. El valor 2000 es provisional.
 
-    constructor(){
-        
+    constructor() { }
+
+    traerCompras() {
         this.dashbServ.GetComprasByID(2).subscribe(//poner id del cliente
-            (response : any) => {
-                
+            (response: any) => {
                 this.listCompras = response;
                 console.log('Datos de compras recibidos:', this.listCompras);
-              },
-                (error) => {
+            },
+            (error) => {
                 console.log(error)
                 console.log("No se encontraron compras de este usuario.")
             }
         )
-
         this.checkScreenSize();
-        
         this.listCompras.forEach((compra) => {
-            this.totalFunds = this.totalFunds + (compra.precio*compra.cantidad);
+            this.totalFunds = this.totalFunds + (compra.precio * compra.cantidad);
         });
-    }
 
+    }
     @HostListener("window:resize", ["$event"])
     onResize(event: any) {
         // Update the screen size whenever the window is resized
@@ -54,13 +52,13 @@ export class DashboardComponent{
 
 
 export class Compra {
-    idCompra : number;
-    simbolo : string;
-    comision : number;
-    cantidad : number;
-    precio : number;
-    fecha : Date;
-    idclient : number;
+    idCompra: number;
+    simbolo: string;
+    comision: number;
+    cantidad: number;
+    precio: number;
+    fecha: Date;
+    idclient: number;
 }
 
 // function calculatePercentageGain(originalValue: number, currentValue: number): number {
