@@ -2,6 +2,8 @@ import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import jsonStock from "./jsonStocks/23-08-23.json";
 import { DashboardService } from '../../services/dashboard.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Usuario } from 'src/app/Interfaces/usuario';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -11,36 +13,80 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class DashboardComponent {
 
+
+
+
     listCompras: Compra[] = []
-    availableFunds: number = 2000;
-    totalFunds: number = 2000;
+    availableFunds: number = 0;
+    totalFunds: number = 0;
     dailyGains: number = 0;
     isMobile: boolean = false;
-    
+
+    dineroDisponible: string = "";
+    dineroDisponibleString: string = ""
+    dineroDisponibloFloat: number = 0;
+
+
+    mostrarMsgError: boolean = false;
+    msgError: string = "";
+
 
     //Traerme el saldo del usuario y guardarlo en availableFunds y totalFunds. El valor 2000 es provisional.
 
-    constructor(private dashbServ: DashboardService,private loginService:LoginService) { 
+    constructor(private dashbServ: DashboardService,
+        private loginService: LoginService,
+        private toastr: ToastrService) {
+
+        this.TraerDineroDelCliente();
         this.traerCompras();
     }
+
+
+
+    TraerDineroDelCliente() {
+
+        this.loginService.getDineroDelUsuario().subscribe(
+            (response) => {
+                console.log("Respuesta exitosa", response);
+                this.dineroDisponible = response.toString();
+            },
+            (error) => {
+
+                this.mostrarMsgError = true;
+                this.toastr.error(error.error, "error");
+            }
+        );
+    }
+
+
+
+
 
     traerCompras() {
         this.dashbServ.GetComprasByID(this.loginService.getUserLogeadoId()).subscribe(
             (response: any) => {
                 this.listCompras = response;
-                console.log('Datos de compras recibidos:', this.listCompras);
+                this.listCompras.forEach((compra) => {
+                    this.totalFunds += compra.precio;
+                    console.log("precio", compra.precio);
+                });
+                // Convertir el dineroDisponible (string) a número
+                this.dineroDisponibloFloat = parseFloat(this.dineroDisponible);
+                // Sumar el totalFunds con dineroDisponibleFloat
+                this.totalFunds += this.dineroDisponibloFloat;
+                this.totalFunds.toFixed(2);
+                console.log(this.dineroDisponible);
+                console.log(this.totalFunds);
             },
             (error) => {
-                console.log(error)
-                console.log("No se encontraron compras de este usuario.")
+                console.log(error);
             }
-        )
+        );
         this.checkScreenSize();
-        this.listCompras.forEach((compra) => {
-            this.totalFunds = this.totalFunds + (compra.precio * compra.cantidad);
-        });
-
     }
+
+
+
     @HostListener("window:resize", ["$event"])
     onResize(event: any) {
         // Update the screen size whenever the window is resized
@@ -63,51 +109,3 @@ export class Compra {
     fecha: Date;
     idclient: number;
 }
-
-// function calculatePercentageGain(originalValue: number, currentValue: number): number {
-//     const gain = ((currentValue - originalValue) / originalValue) * 100;
-//     return Math.round(gain * 100) / 100; // Round to 2 decimal places
-// }
-
-// export class StockItem {
-//     simbolo:string | null;
-//     puntas:Punta | null = new Punta();
-//     ultimoPrecio: number | null;
-//     variacionPorcentual:number | null;
-//     apertura: number | null;
-//     maximo: number | null;
-//     minimo: number | null;
-//     ultimoCierre: number | null;
-//     volumen: number | null;
-//     cantidadOperaciones: number | null;
-//     fecha: string | null;
-//     tipoOpcion: string | null;
-//     precioEjercicio: string | null;
-//     fechaVencimiento: string | null;
-//     mercado: string | null;
-//     moneda: string | null;
-//     descripcion: string | null;
-//     plazo: string | null;
-//     laminaMinima: number | null;
-//     lote: number | null;
-//     //total:number | null;
-//     //gains:number | null;
-// }
-
-// export class StockData {
-//     symbol : string | null;
-//     company : string | null;
-//     amount : number;
-//     price : number;
-//     currentPrice: number | null;
-//     gains : number;
-//     total : number;
-// }
-
-// export class Punta {
-//     cantidadCompra: number;
-//     precioCompra: number;
-//     precioVenta: number;
-//     cantidadVenta: number;
-// }
-
