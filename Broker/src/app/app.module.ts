@@ -22,6 +22,11 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 
 @NgModule({
@@ -45,6 +50,8 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     
     FormsModule
   ],

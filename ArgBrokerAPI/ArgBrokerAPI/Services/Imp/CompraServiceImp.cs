@@ -71,7 +71,7 @@ public class CompraServiceImp : CompraService
             catch (Exception ex)
             {
                 transaction.Rollback();
-                throw new ErrorApi(500, "Hubo un error al registrar la compra.");
+                throw new ErrorApi(500, ex.Message);
             }
         }
 }
