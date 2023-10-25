@@ -17,6 +17,9 @@ import { FormCompraAccionComponent } from './components/form-compra-accion/form-
 import { CustomInputDirective } from './components/form-compra-accion/custom-input.directive';
 import { CustomInput2Directive } from './components/form-compra-accion/custom-input-2.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -33,13 +36,15 @@ import { HttpClientModule } from '@angular/common/http';
     CustomInputDirective,
     CustomInput2Directive,
     CotizacionesComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    UserupdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

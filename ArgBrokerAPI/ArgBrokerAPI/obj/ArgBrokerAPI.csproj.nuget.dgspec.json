@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {}
+    "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {
+    "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
         "projectName": "ArgBrokerAPI",
-        "projectPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+        "projectPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
         "packagesPath": "C:\\Users\\Juani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\obj\\",
+        "outputPath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Juani\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -49,6 +49,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.16, )"
+            },
+            "Newtonsoft.Json.Schema": {
+              "target": "Package",
+              "version": "[3.0.15, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

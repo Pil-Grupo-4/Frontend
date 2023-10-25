@@ -1,5 +1,6 @@
 ﻿using ArgBrokerAPI.DataSet;
-using ArgBrokerAPI.Models;
+using ArgBrokerAPI.Models.DTOs;
+using ArgBrokerAPI.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArgBrokerAPI.Services.Imp
@@ -7,10 +8,12 @@ namespace ArgBrokerAPI.Services.Imp
     public class UserServiceImp : UserService
     {
         private readonly argBrokerDbContext _dbContext;
+        private readonly ClienteService _clienteService;
 
-        public UserServiceImp(argBrokerDbContext dbContext)
+        public UserServiceImp(argBrokerDbContext dbContext, ClienteService clienteService)
         {
             _dbContext = dbContext;
+            _clienteService = clienteService;
         }
 
         public async Task<IEnumerable<Usuario>> GetAllUsers()
@@ -26,14 +29,32 @@ namespace ArgBrokerAPI.Services.Imp
             {
                 _dbContext.Add(newUser);
                 await _dbContext.SaveChangesAsync();
+                await _clienteService.RegisterNewClient(newUser);
                 return newUser;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new ApplicationException("Hubo un error al crear el usuario.", ex);
             }
+        }
 
+        public async Task<Usuario> LogginUser(UsuarioLoginDTO logUser)
+        {
+            try
+            {
+                Usuario user =  _dbContext.Usuarios.FirstOrDefault(u => u.Correo == logUser.Correo);
 
-
+                if (user == null || logUser.password != user.Contraseña)
+                {
+                    // Si el usuario no existe o la contraseña no coincide, lanza una excepción.
+                    throw new Exception("Credenciales incorrectas");
+                }
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message, ex);
+            }
         }
 
         public async Task<Usuario> PutUser(Usuario user, int id)
@@ -67,4 +88,7 @@ namespace ArgBrokerAPI.Services.Imp
             }
         }
     }
+
+
 }
+

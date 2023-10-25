@@ -1,37 +1,42 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { Usuario } from '../Interfaces/usuario';
+import { tap, map } from 'rxjs/operators'; // Importa 'map' junto con 'tap'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  private apiUrl = 'https://localhost:7037/api/Usuario/usuario/login';
+  private usuarioLogeadoSubject = new BehaviorSubject<Usuario | null>(null);
 
-  URL_USER = 'assets/json/14-06-23.json';
   constructor(private http: HttpClient) { }
 
-  postLogin(user: User): Observable<User>{
-      return this.http.post<User>(this.URL_USER, user);
-  }
-  
-  persistUser(user: User){
-    if(this.validateUser(user)){
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    }
+  login(loginData: any) {
+    return this.http.post(this.apiUrl, loginData).pipe(
+      map((response: any) => {
+        return {
+          nombre: response.nombre,
+          apellido: response.apellido,
+          dni: response.dni,
+          correo: response.correo,
+          nacimiento: response.nacimiento,
+          contraseña: response.contraseña,
+          telefono: response.telefono
+        };
+      }),
+      tap((usuario: Usuario) => {
+        this.usuarioLogeadoSubject.next(usuario);
+      })
+    );
   }
 
-  validateUser(user: User): boolean{
-    if(user.email != null && user.password == null){
-      return true;
-    }else{
-      return false;
-    }
+  get usuarioLogeado$() {
+    return this.usuarioLogeadoSubject.asObservable();
   }
 
+  limpiarUsuarioLogeado() {
+    this.usuarioLogeadoSubject.next(null);
+  }
 }
-
-
-class User{
-  email: string;
-  password: string;
-} 

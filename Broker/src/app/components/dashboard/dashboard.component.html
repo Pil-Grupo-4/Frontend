@@ -11,12 +11,10 @@
         <div class="col-md-12 col-lg-2 mx-2 mt-4 portfolio_div">
             <h3>Fondos</h3>
             <!--<h4>Fondos disponibles para comprar acciones</h3>-->
-            <h4>$2000</h4>
+            <h4>{{availableFunds}}</h4>
         </div>
         <div class="col-md-12 col-lg-2 mx-2 mt-4 portfolio_div">
             <h3>Ganancia Diaria</h3>
-            <!--<h4>compara fondos totales desde ayer con los de ahora</h3>-->
-            <!--Si es positivo mostrar en verde/ sino en rojo-->
             <h4>${{dailyGains}}</h4>
         </div>
     </div>
@@ -25,36 +23,32 @@
 
 
     <div *ngIf="isMobile">
-        <table *ngFor="let stockItem of stocksData;" class="table table-bordered table-striped mt-4 portfolio_table">
+        <table *ngFor="let compra of listCompras;" class="table table-bordered table-striped mt-4 portfolio_table">
             <thead>
                 <tr>
-                    <th colspan="2">Simbolo: {{stockItem.symbol}}</th>
+                    <th colspan="2">Simbolo: {{compra.simbolo}}</th>
                 </tr>
             </thead>
             <tbody class="table-row">
-                <tr class="row-mobile">
-                    <td>Nombre</td>
-                    <td>{{stockItem.company}}</td>
-                </tr>
                 <tr>
                     <td>Cantidad</td>
-                    <td>{{stockItem.amount}}</td>
+                    <td>{{compra.cantidad}}</td>
                 </tr>
                 <tr>
                     <td>Precio Compra</td>
-                    <td>${{stockItem.price}}</td>
+                    <td>${{compra.precio}}</td>
                 </tr>
                 <tr>
                     <td>Precio Actual</td>
-                    <td>${{stockItem.currentPrice}}</td>
+                    <td>${{compra.precio}}</td>
                 </tr>
                 <tr>
                     <td>Ganancia</td>
-                    <td>%{{stockItem.gains}}</td>
+                    <td>%{{0}}</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>${{stockItem.total}}</td>
+                    <td>${{compra.precio * compra.cantidad}}</td>
                 </tr>
             </tbody>
         </table>
@@ -65,7 +59,6 @@
             <thead>
                 <tr>
                     <th>Simbolo</th>
-                    <th>Nombre</th>
                     <th>Cantidad</th>
                     <th>Precio Compra</th>
                     <th>Precio Actual</th>
@@ -74,14 +67,13 @@
                 </tr>
             </thead>
             <tbody class="table_row">
-                <tr *ngFor="let stockItem of stocksData; let i = index">
-                    <td>{{stockItem.symbol}}</td>
-                    <td>{{stockItem.company}}</td>
-                    <td>{{stockItem.amount}}</td>
-                    <td>${{stockItem.price}}</td>
-                    <td>${{stockItem.currentPrice}}</td>
-                    <td>%{{stockItem.gains}}</td>
-                    <td>${{stockItem.total}}</td>
+                <tr *ngFor="let compra of listCompras; let i = index">
+                    <td>{{compra.simbolo}}</td>
+                    <td>{{compra.cantidad}}</td>
+                    <td>${{compra.precio}}</td>
+                    <td>${{compra.precio}}</td>
+                    <td>%{{0}}</td>
+                    <td>${{compra.precio * compra.cantidad}}</td>
                 </tr>
             </tbody>
         </table>
