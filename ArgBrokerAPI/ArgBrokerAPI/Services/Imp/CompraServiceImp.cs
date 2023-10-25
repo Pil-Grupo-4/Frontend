@@ -17,9 +17,12 @@ public class CompraServiceImp : CompraService
         _clienteService = clienteService;
     }
 
-    public async Task<List<Compra>> GetCompras(int id){
-        var listaCompras = await _dbContext.Compras.Where(compra => compra.IdCliente == id).ToListAsync();
-        return listaCompras;
+    public async Task<List<Compra>> GetCompras(decimal id){
+        List<Compra>listaComprasSinFiltrar = await _dbContext.Compras.Where(compra => compra.IdCliente == id).ToListAsync();
+
+        // aca va a estar la logica para comprar simbolos y si son iguales, se acumulan
+        List<Compra> listaCompra = new List<Compra>();
+        return listaComprasSinFiltrar;
     }
 
     public async Task<Compra> PostNewCompra(CompraPostDTO newCompra)
@@ -71,7 +74,7 @@ public class CompraServiceImp : CompraService
             catch (Exception ex)
             {
                 transaction.Rollback();
-                throw new ErrorApi(500, "Hubo un error al registrar la compra.");
+                throw new ErrorApi(500, ex.Message);
             }
         }
 }

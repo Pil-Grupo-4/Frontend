@@ -26,7 +26,7 @@ public class ClienteServiceImp : ClienteService
             }
             else
             {
-                throw new Exception("Cliente no encontrado");
+                throw new Exception("Debe iniciar sesion para realizar una compra");
             }
         }
         catch (Exception ex)

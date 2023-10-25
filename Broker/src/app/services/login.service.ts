@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Usuario } from '../Interfaces/usuario';
-import { tap, map } from 'rxjs/operators'; // Importa 'map' junto con 'tap'
+import { tap, map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   private apiUrl = 'https://localhost:7037/api/Usuario/usuario/login';
+  private apiUrlDineroByUser = 'https://localhost:7037/api/Cliente/dineroByClient';
   private usuarioLogeadoSubject = new BehaviorSubject<Usuario | null>(null);
 
   constructor(private http: HttpClient) { }
@@ -41,7 +43,13 @@ export class LoginService {
   get usuarioLogeado$() {
     return this.usuarioLogeadoSubject.asObservable();
   }
+  getDineroDelUsuario(){
+    const url = `${this.apiUrlDineroByUser}/${this.getUserLogeadoId()}`;
+    return this.http.get(url);
 
+    
+}
+  
   limpiarUsuarioLogeado() {
     this.usuarioLogeadoSubject.next(null);
   }

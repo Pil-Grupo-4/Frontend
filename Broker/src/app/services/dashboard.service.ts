@@ -5,12 +5,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'https://localhost:7037/api/Cliente'; // Definir la URL de tu endpoint
+  private apiUrl = 'https://localhost:7037/api/Compra/ComprasByClient'; // URL del endpoint de consulta de compras por cliente
 
   constructor(private http: HttpClient) {}
 
-  // Método para realizar la solicitud de registro
-  GetComprasByID(userData: any) {
-    return this.http.post(this.apiUrl, userData);
+  // Método para realizar la solicitud de consulta de compras por cliente
+  GetComprasByID(userId: number) {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.get(url);
   }
 }

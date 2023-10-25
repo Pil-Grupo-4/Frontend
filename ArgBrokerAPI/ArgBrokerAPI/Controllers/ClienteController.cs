@@ -14,6 +14,11 @@ namespace ArgBrokerAPI.Controllers
         {
             _clienteService = clienteService;
         }
+        [HttpGet("dineroByClient/{clientid}")]
+        public async Task<ActionResult<decimal>> GetCompras(int clientid)
+        {
+            return await _clienteService.GetDineroByClientId(clientid);
+        }
 
     }
 }
