@@ -5,7 +5,7 @@ namespace ArgBrokerAPI.Services
 {
     public interface CompraService
     {
-        Task<List<Compra>> GetCompras(int id);
+        Task<List<Compra>> GetCompras(decimal id);
         Task<Compra> PostNewCompra(CompraPostDTO compra);
     }
 }

@@ -54,8 +54,8 @@ namespace ArgBrokerAPI.Migrations
                     b.Property<double>("Cantidad")
                         .HasColumnType("float");
 
-                    b.Property<int>("Comision")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Comision")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");

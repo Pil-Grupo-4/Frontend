@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import jsonStock from "./jsonStocks/23-08-23.json";
 import { DashboardService } from '../../services/dashboard.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -15,14 +16,16 @@ export class DashboardComponent {
     totalFunds: number = 2000;
     dailyGains: number = 0;
     isMobile: boolean = false;
-    private dashbServ: DashboardService;
+    
 
     //Traerme el saldo del usuario y guardarlo en availableFunds y totalFunds. El valor 2000 es provisional.
 
-    constructor() { }
+    constructor(private dashbServ: DashboardService,private loginService:LoginService) { 
+        this.traerCompras();
+    }
 
     traerCompras() {
-        this.dashbServ.GetComprasByID(2).subscribe(//poner id del cliente
+        this.dashbServ.GetComprasByID(this.loginService.getUserLogeadoId()).subscribe(
             (response: any) => {
                 this.listCompras = response;
                 console.log('Datos de compras recibidos:', this.listCompras);

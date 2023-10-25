@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArgBrokerAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class primermigration : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,7 +58,7 @@ namespace ArgBrokerAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Simbolo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Comision = table.Column<int>(type: "int", nullable: false),
+                    Comision = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Cantidad = table.Column<double>(type: "float", nullable: false),
                     Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),

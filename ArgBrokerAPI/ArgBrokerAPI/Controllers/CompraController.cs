@@ -30,15 +30,10 @@ namespace ArgBrokerAPI.Controllers
                return Ok(UsersList);
            }
         */
-        // GET api/<CompraController>/5
-        [HttpGet("{id}")]
-        public string GetAllCompras(int id)
-        {
-            return "value";
-        }
+
 
         [HttpGet("ComprasByClient/{clientid}")]
-        public async Task<ActionResult<List<Compra>>> GetCompras(int clientid)
+        public async Task<ActionResult<List<Compra>>> GetCompras(decimal clientid)
         {
             return await _compraService.GetCompras(clientid);
         }
