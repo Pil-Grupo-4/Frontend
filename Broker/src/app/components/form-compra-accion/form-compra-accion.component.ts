@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { EventListenerObject } from 'rxjs/internal/observable/fromEvent';
 import { Usuario } from 'src/app/Interfaces/usuario';
 import { Puntas } from 'src/app/Interfaces/puntas';
-import { Titulo } from 'src/app/Interfaces/titulo'; 
+import { Titulo } from 'src/app/Interfaces/titulo';
+import { CompraDTO } from 'src/app/Interfaces/compra-dto';
+import { CompraService } from 'src/app/services/compra.service';
 
 @Component({
   selector: 'app-form-compra-accion',
@@ -13,55 +15,80 @@ import { Titulo } from 'src/app/Interfaces/titulo';
 })
 export class FormCompraAccionComponent implements OnInit {
   datos: any;
-  selectedSymbol: string = '0'; // Valor por defecto para el símbolo
-  selectedRadio: number = 1; // Valor por defecto para el radio (Cantidad)
-  cantidad: number = 0; // Cantidad de acciones
-  monto: number = 0; // Monto calculado
-  precioAccion: number = 0; // Precio de la acción seleccionada
-  selectedItem: object;
-
-  precioAccionSeleccionada: number=0;
-  puntas:Puntas= {    cantidadCompra: 0,precioCompra: 0, precioVenta: 0,cantidadVenta: 0};
+  puntas: Puntas = { cantidadCompra: 0, precioCompra: 0, precioVenta: 0, cantidadVenta: 0 };
   accionSelec: Titulo = { simbolo: "", puntas: { cantidadCompra: 0, precioCompra: 0, precioVenta: 0, cantidadVenta: 0 }, ultimoPrecio: 0, variacionPorcentual: 0, apertura: 0, maximo: 0, minimo: 0, ultimoCierre: 0, volumen: 0, cantidadOperaciones: 0, fecha: "", tipoOpcion: null, precioEjercicio: null, fechaVencimiento: null, mercado: "", moneda: "", descripcion: "", plazo: "", laminaMinima: 0, lote: 0 };
+  comisionEstablecida:number = 0.5;
+  cantidadCompra: number = 0;
+  compraPost : CompraDTO = {nombre:this.accionSelec.descripcion,simbolo:this.accionSelec.simbolo,comision:this.comisionEstablecida,cantidad: this.cantidadCompra,precio: this.accionSelec.ultimoPrecio, idCliente:999314,fecha:""}
 
+  selectedSymbol: string = '0';
+  
 
+  monto: number = 0;
+  precioFinalComision: number = 0;
+  precioFinalCompra: number = 0;
+  precioAccionSeleccionada: number = 0;
 
+  compraForm: FormGroup;
+  mostrarMsgError: boolean = false;
+  msgError: string = "";
 
-  constructor(private http: HttpClient) { }
-
-
+  constructor(private http: HttpClient,private formBuilder: FormBuilder,private compraService: CompraService) {
+      this.compraForm = this.formBuilder.group({
+    nombre: [''],
+    simbolo: [''],
+    comision: [''],
+    cantidad: [''],
+    precio: [''],
+    idCliente: [''],
+    fecha: [''],
+  });
+   }
   ngOnInit(): void {
     this.http.get('assets/json/14-06-23.json').subscribe((data) => {
       this.datos = data;
     });
   }
 
-miMetodo(event: EventListenerObject<Titulo[]>) {
-    const selectedValue = event;
 
+
+  submitCompraForm() {
+    if (this.compraForm.valid) {
+      const formData = this.compraForm.value;
+      console.log("sbumitCompra FormData: ",formData)
+
+      this.compraService.registreCompra(formData).subscribe(
+        (response) => {
+        console.log("response",response)
+        },
+        (error) => {
+          this.mostrarMsgError = true;
+          this.msgError = 'Error al registrar: ' + error.message;
+        }
+      );
+    }
+  }
+
+
+
+
+
+  miMetodo(event: EventListenerObject<Titulo[]>) {
+    const selectedValue = event;
     for (const item of this.datos.titulos) {
       if (item === selectedValue) {
-        this.selectedItem = item
-        this.accionSelec = item 
-        return this.selectedItem;
+        this.accionSelec = item
+        this.cantidadCompra = 0;
+        this.precioFinalCompra = 0;
+        return this.accionSelec;
       }
-  }
-  return this.selectedItem;
-}
-
-  calcularMonto() {
-    if (this.cantidad > 0 && this.precioAccion > 0) {
-      this.monto = this.cantidad * this.precioAccion;
-    } else {
-      this.monto = 0;
     }
+    return this.accionSelec;
+  }
+  calcularPrecioFinal(cantidad: number) {
+    this.precioFinalCompra = this.accionSelec.ultimoPrecio * cantidad;
+    this.precioFinalComision = this.precioFinalCompra + ((this.precioFinalCompra / 100) * 0.5);
   }
 
-  calcularCantidad() {
-    if (this.monto > 0 && this.precioAccion > 0) {
-      this.cantidad = this.monto / this.precioAccion;
-    } else {
-      this.cantidad = 0;
-    }
-  }
+
 }

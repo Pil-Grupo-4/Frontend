@@ -1,10 +1,11 @@
-﻿using ArgBrokerAPI.Models.Entities;
+﻿using ArgBrokerAPI.Models.DTOs;
+using ArgBrokerAPI.Models.Entities;
 
 namespace ArgBrokerAPI.Services
 {
     public interface CompraService
     {
         Task<List<Compra>> GetCompras(int id);
-        Task<Compra> PostNewCompra(Compra compra);
+        Task<Compra> PostNewCompra(CompraPostDTO compra);
     }
 }

@@ -14,6 +14,27 @@ public class ClienteServiceImp : ClienteService
 
     }
 
+    public async Task<Cliente> GetClienteById(int idCliente)
+    {
+        try
+        {
+            var cliente = await _dbContext.Clientes.FirstOrDefaultAsync(c => c.IdCliente == idCliente);
+
+            if (cliente != null)
+            {
+                return cliente;
+            }
+            else
+            {
+                throw new Exception("Cliente no encontrado");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public async Task<decimal> GetDineroByClientId(int idCliente)
     {
         try

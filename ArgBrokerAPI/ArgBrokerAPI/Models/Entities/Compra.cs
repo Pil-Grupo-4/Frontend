@@ -10,7 +10,7 @@ namespace ArgBrokerAPI.Models.Entities
         public int IdCompra { get; set; }
         public string Nombre { get; set; }
         public string Simbolo { get; set; }
-        public int Comision { get; set; }
+        public decimal Comision { get; set; }
         public double Cantidad { get; set; }
         public decimal Precio { get; set; }
         public DateTime Fecha { get; set; }

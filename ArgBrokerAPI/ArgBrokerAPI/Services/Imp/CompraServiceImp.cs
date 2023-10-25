@@ -1,4 +1,6 @@
 ﻿using ArgBrokerAPI.DataSet;
+using ArgBrokerAPI.Models;
+using ArgBrokerAPI.Models.DTOs;
 using ArgBrokerAPI.Models.Entities;
 using ArgBrokerAPI.Services;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -20,47 +22,60 @@ public class CompraServiceImp : CompraService
         return listaCompras;
     }
 
-    public async Task<Compra> PostNewCompra(Compra newCompra)
+    public async Task<Compra> PostNewCompra(CompraPostDTO newCompra)
     {
         using (var transaction = _dbContext.Database.BeginTransaction())
         {
             try
             {
-                // Verifica si el cliente tiene suficiente dinero
-                decimal dineroDelCliente = await _clienteService.GetDineroByClientId(newCompra.IdCliente);
+                Cliente clienteComprador = new Cliente();
+                clienteComprador = await _clienteService.GetClienteById(newCompra.idCliente);
 
-                if (dineroDelCliente < newCompra.Precio)
+                if (clienteComprador == null)
                 {
-                    throw new Exception("El cliente no tiene suficiente dinero para realizar la compra.");
+                    // Lanza una excepción de API con el código de estado 404 (Not Found)
+                    throw new ErrorApi(404, "Cliente no encontrado.");
                 }
 
-                // Actualiza el campo "Dinero" del cliente
-                var cliente = await _dbContext.Clientes.FindAsync(newCompra.IdCliente);
-
-                if (cliente != null)
+                if (clienteComprador.Dinero < newCompra.Precio)
                 {
-                    cliente.Dinero -= newCompra.Precio;
-                    _dbContext.Update(cliente);
-                }
-                else
-                {
-                    throw new Exception("Cliente no encontrado.");
+                    // Lanza una excepción de API con el código de estado 400 (Bad Request)
+                    throw new ErrorApi(400, "El cliente no tiene suficiente dinero para realizar la compra.");
                 }
 
-                // Registra la compra
-                _dbContext.Add(newCompra);
+                clienteComprador.Dinero -= newCompra.Precio;
+                _dbContext.Update(clienteComprador);
+
+                Compra compra = new Compra
+                {
+                    IdCompra = 0,
+                    Nombre = newCompra.Nombre,
+                    Simbolo = newCompra.Simbolo,
+                    Comision = newCompra.Comision,
+                    Precio = newCompra.Precio,
+                    Fecha = newCompra.Fecha,
+                    Cliente = clienteComprador,
+                    Cantidad = newCompra.Cantidad,
+                };
+
+                _dbContext.Add(compra);
                 await _dbContext.SaveChangesAsync();
 
                 transaction.Commit();
-                return newCompra;
+                return compra;
+            }
+            catch (ErrorApi)
+            {
+                // La excepción de API ya contiene el código de estado y el contenido
+                throw;
             }
             catch (Exception ex)
             {
-
                 transaction.Rollback();
-                throw new ApplicationException("Hubo un error al registrar la compra.", ex);
+                // Lanza una excepción de API con el código de estado 500 (Internal Server Error)
+                throw new ErrorApi(500, "Hubo un error al registrar la compra.");
             }
         }
-    }
+}
 }
     

@@ -1,3 +1,4 @@
+
 <div class="contain justify-content-center w-100 d-flex mt-2">
   <div class="w-75 mb-4">
     <h2 class="titulo fw-bolder mb-3">Comprar accion</h2>
@@ -13,42 +14,38 @@
       </div>
       <h6 class="fw-bold mt-2">Simbolo</h6>
       <div class="input-group mb-3 w-50">
-        <select class="form-select" id="inputGroupSelect01" [(ngModel)]="selectedSymbol" (ngModelChange)="miMetodo($event)">
+        <select class="form-select" id="inputGroupSelect01" [(ngModel)]="selectedSymbol"
+          (ngModelChange)="miMetodo($event)">
           <option *ngFor="let item of datos?.titulos" [ngValue]="item">{{ item.simbolo }}</option>
-        </select>              
+        </select>
+        <span class="text-secondary fs-4 mb-2"> <span class="text-success fw-bold">${{
+            accionSelec.ultimoPrecio}}</span></span>
+
       </div>
+
       <div class="input-group mb-3 d-flex flex-column" CustomInput>
         <h6 class="fw-bold mt-2">Cantidad/Monto</h6>
         <div class="d-flex flex-row">
           <div class="input-group-text w-25">
             <label class="d-flex flex-row-reverse align-items-center fw-medium">Cantidad
-              <input class="form-check-input mt-0" type="radio" value="1" name="input" id="cantidadLabel"
-                aria-label="Checkbox for following text input" checked>
             </label>
           </div>
-          <input type="text" class="form-control w-50" [(ngModel)]="cantidad" (ngModelChange)="calcularMonto()" aria-label="Text input with checkbox" id="cantidadInput" placeholder="Cantidad">
+          <input type="number" class="form-control w-50" [(ngModel)]="cantidadCompra"
+            (ngModelChange)="calcularPrecioFinal(cantidadCompra)" aria-label="Text input with checkbox"
+            id="cantidadInput" placeholder="Cantidad">
+          <span class="text-secondary fs-4 mb-2">Total: <span
+              class="text-success fw-bold">{{precioFinalCompra}}</span></span>
         </div>
-        <div class="d-flex flex-row">
-          <div class="input-group-text w-25">
-            <label class="d-flex flex-row-reverse align-items-center fw-medium">Monto
-              <input class="form-check-input mt-0" type="radio" value="2" name="input" id="montoLabel"
-                aria-label="Checkbox for following text input">
-            </label>
-          </div>
-          <input type="text" class="form-control w-50" [(ngModel)]="monto" (ngModelChange)="calcularCantidad()" aria-label="Text input with checkbox" id="montoInput" placeholder="Monto" disabled>
+        <br>
+        <div class="w-100 align-items-center d-flex flex-column">
+          <span class="text-secondary fs-4">Precio Final: <span class="text-success fw-bold">$
+              {{ precioFinalComision}}</span></span>
+          <span class="text-secondary fs-6">Comision: <span class="text-success fw-bold">0.5%</span></span>
         </div>
       </div>
-      <div class="w-100 align-items-end d-flex flex-column">
-        <span class="text-secondary fs-4 mb-2">Precio actual: <span class="text-success fw-bold">$ 124.250</span></span>
+
+      <div class="compraContainer_buttons d-flex justify-content-center mt-4">
+        <button type="button" class="btn fw-bold justify-content-center w-25 text-white ">Comprar</button>
       </div>
-    </div>
-    <div class="compraContainer_buttons d-flex justify-content-center mt-4">
-      <button type="button" class="btn fw-bold justify-content-center w-25 text-white ">Comprar</button>
     </div>
   </div>
-</div>
-
-
-
-
-
