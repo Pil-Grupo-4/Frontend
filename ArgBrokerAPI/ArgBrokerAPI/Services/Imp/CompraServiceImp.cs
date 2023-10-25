@@ -66,13 +66,11 @@ public class CompraServiceImp : CompraService
             }
             catch (ErrorApi)
             {
-                // La excepción de API ya contiene el código de estado y el contenido
                 throw;
             }
             catch (Exception ex)
             {
                 transaction.Rollback();
-                // Lanza una excepción de API con el código de estado 500 (Internal Server Error)
                 throw new ErrorApi(500, "Hubo un error al registrar la compra.");
             }
         }

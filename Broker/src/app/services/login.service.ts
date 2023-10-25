@@ -17,6 +17,7 @@ export class LoginService {
     return this.http.post(this.apiUrl, loginData).pipe(
       map((response: any) => {
         return {
+          idUsuario : response.idUsuario, 
           nombre: response.nombre,
           apellido: response.apellido,
           dni: response.dni,
@@ -31,7 +32,12 @@ export class LoginService {
       })
     );
   }
-
+  getUserLogeadoId(){
+    if(this.usuarioLogeadoSubject.value !=null){
+   return this.usuarioLogeadoSubject.value.idUsuario;
+    }
+    return 0
+  }
   get usuarioLogeado$() {
     return this.usuarioLogeadoSubject.asObservable();
   }

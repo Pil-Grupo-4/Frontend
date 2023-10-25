@@ -10,6 +10,7 @@ export class CompraService {
   constructor(private http: HttpClient) {}
 
   registreCompra(userData: any) {
+    console.log("Service",userData)
     return this.http.post(this.apiUrl, userData);
   }
 }

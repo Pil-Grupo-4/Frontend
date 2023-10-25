@@ -19,6 +19,7 @@ import { CustomInput2Directive } from './components/form-compra-accion/custom-in
 import { HttpClientModule } from '@angular/common/http';
 import { UserupdateComponent } from './components/userupdate/userupdate.component';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -44,9 +45,12 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    
     FormsModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 
