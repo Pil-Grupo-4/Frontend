@@ -1,39 +1,92 @@
-import { Component,EventEmitter,HostListener,Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import jsonStock from "./jsonStocks/23-08-23.json";
+import { DashboardService } from '../../services/dashboard.service';
+import { LoginService } from 'src/app/services/login.service';
+import { Usuario } from 'src/app/Interfaces/usuario';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent{
-    stocksfromJSON: StockItem[] = jsonStock.titulos;
-    stocksData : StockData[] = [];
-    totalFunds : number = 2000;
-    dailyGains : number = 0;
-    isMobile : boolean = false;
+export class DashboardComponent {
 
-    constructor(){
-        
-        this.checkScreenSize();
 
-        for (let i = 2; i < 8; i++) {
-            let stock : StockItem = this.stocksfromJSON[i];
-            let stockDataItem = new StockData();
-            if (stock.puntas !== null && stock.ultimoCierre !== null) {
-                stockDataItem.amount = stock.puntas.cantidadCompra;
-                stockDataItem.company = stock.descripcion;
-                stockDataItem.currentPrice = stock.ultimoCierre;
-                stockDataItem.symbol = stock.simbolo;
-                stockDataItem.price = stock.puntas.precioCompra;
-                stockDataItem.total = stock.puntas.cantidadCompra * stock.ultimoCierre;
-                stockDataItem.gains = calculatePercentageGain(stock.puntas.precioCompra, stock.ultimoCierre);
-                this.totalFunds = parseFloat((this.totalFunds + stockDataItem.total).toFixed(2));
-                this.dailyGains = parseFloat((this.dailyGains +(stock.ultimoCierre - stock.puntas.precioCompra)).toFixed(2));
-                this.stocksData.push(stockDataItem);
-            }
-        }
+
+
+    listCompras: Compra[] = []
+    availableFunds: number = 0;
+    totalFunds: number = 0;
+    dailyGains: number = 0;
+    isMobile: boolean = false;
+
+    dineroDisponible: string = "";
+    dineroDisponibleString: string = ""
+    dineroDisponibloFloat: number = 0;
+
+
+    mostrarMsgError: boolean = false;
+    msgError: string = "";
+
+
+    //Traerme el saldo del usuario y guardarlo en availableFunds y totalFunds. El valor 2000 es provisional.
+
+    constructor(private dashbServ: DashboardService,
+        private loginService: LoginService,
+        private toastr: ToastrService) {
+
+        this.TraerDineroDelCliente();
+        this.traerCompras();
     }
+
+
+
+    TraerDineroDelCliente() {
+
+        this.loginService.getDineroDelUsuario().subscribe(
+            (response) => {
+                console.log("Respuesta exitosa", response);
+                this.dineroDisponible = response.toString();
+            },
+            (error) => {
+
+                this.mostrarMsgError = true;
+                this.toastr.error(error.error, "error");
+            }
+        );
+    }
+
+
+
+
+
+    traerCompras() {
+        this.dashbServ.GetComprasByID(this.loginService.getUserLogeadoId()).subscribe(
+            (response: any) => {
+                this.listCompras = response;
+                this.listCompras.forEach((compra) => {
+                    this.totalFunds += compra.precio;
+                    console.log("precio", compra.precio);
+                });
+                // Convertir el dineroDisponible (string) a número
+                this.dineroDisponibloFloat = parseFloat(this.dineroDisponible);
+                // Sumar el totalFunds con dineroDisponibleFloat
+                this.totalFunds += this.dineroDisponibloFloat;
+                this.totalFunds.toFixed(2);
+                console.log(this.dineroDisponible);
+                console.log(this.totalFunds);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+        this.checkScreenSize();
+    }
+
+
+
     @HostListener("window:resize", ["$event"])
     onResize(event: any) {
         // Update the screen size whenever the window is resized
@@ -47,51 +100,12 @@ export class DashboardComponent{
 }
 
 
-
-
-function calculatePercentageGain(originalValue: number, currentValue: number): number {
-    const gain = ((currentValue - originalValue) / originalValue) * 100;
-    return Math.round(gain * 100) / 100; // Round to 2 decimal places
-}
-
-export class StockItem {
-    simbolo:string | null;
-    puntas:Punta | null = new Punta();
-    ultimoPrecio: number | null;
-    variacionPorcentual:number | null;
-    apertura: number | null;
-    maximo: number | null;
-    minimo: number | null;
-    ultimoCierre: number | null;
-    volumen: number | null;
-    cantidadOperaciones: number | null;
-    fecha: string | null;
-    tipoOpcion: string | null;
-    precioEjercicio: string | null;
-    fechaVencimiento: string | null;
-    mercado: string | null;
-    moneda: string | null;
-    descripcion: string | null;
-    plazo: string | null;
-    laminaMinima: number | null;
-    lote: number | null;
-    //total:number | null;
-    //gains:number | null;
-}
-
-export class StockData {
-    symbol : string | null;
-    company : string | null;
-    amount : number;
-    price : number;
-    currentPrice: number | null;
-    gains : number;
-    total : number;
-}
-
-export class Punta {
-    cantidadCompra: number;
-    precioCompra: number;
-    precioVenta: number;
-    cantidadVenta: number;
+export class Compra {
+    idCompra: number;
+    simbolo: string;
+    comision: number;
+    cantidad: number;
+    precio: number;
+    fecha: Date;
+    idclient: number;
 }

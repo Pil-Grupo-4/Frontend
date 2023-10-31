@@ -6,12 +6,33 @@ using Microsoft.EntityFrameworkCore;
 public class ClienteServiceImp : ClienteService
 {
     private readonly argBrokerDbContext _dbContext;
-    private readonly UserService userService;
 
-    public ClienteServiceImp(argBrokerDbContext dbContext, UserService userService)
+
+    public ClienteServiceImp(argBrokerDbContext dbContext)
     {
         _dbContext = dbContext;
-        this.userService = userService;
+
+    }
+
+    public async Task<Cliente> GetClienteById(int idCliente)
+    {
+        try
+        {
+            var cliente = await _dbContext.Clientes.FirstOrDefaultAsync(c => c.IdCliente == idCliente);
+
+            if (cliente != null)
+            {
+                return cliente;
+            }
+            else
+            {
+                throw new Exception("Debe iniciar sesion para realizar una compra");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 
     public async Task<decimal> GetDineroByClientId(int idCliente)
@@ -35,11 +56,11 @@ public class ClienteServiceImp : ClienteService
         }
     }
 
-    public async Task<Cliente> RegisterNewClient(Cliente newCliente)
+    public async Task<Cliente> RegisterNewClient(Usuario newUsuario)
     {
         try
         {
-            Usuario userInserted = await userService.PostNewUser(newCliente.Usuario);
+            Usuario userInserted = await _dbContext.Usuarios.FindAsync(newUsuario.IdUsuario);
 
             var newClient = new Cliente
             {

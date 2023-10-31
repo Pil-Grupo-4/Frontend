@@ -1,52 +1,48 @@
-import { getLocaleCurrencySymbol } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterService } from '../../services/register.service'; // Importa el servicio
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   mostrarMsgError: boolean = false;
   msgError: string = "";
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private registerService: RegisterService 
+  ) {}
+
   registerForm = this.formBuilder.group({
-    name:['', Validators.required],
-    birthDate:['', Validators.required],
-    email:['', [Validators.required, Validators.email]],
-    password:['', Validators.required,Validators.minLength(6)]
-  })
+    nombre: ['', [Validators.required]],
+    apellido: ['', [Validators.required]],
+    dni: ['', [Validators.required]],
+    correo: ['', [Validators.required, Validators.email]],
+    nacimiento: ['', [Validators.required]],
+    contraseña: ['', [Validators.required, Validators.minLength(6)]],
+    telefono: [''] // Valor por defecto para el campo de teléfono
+  });
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  submitForm() {
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value;
 
-  ngOnInit():void {
-  }
+      this.registerService.registerUser(formData).subscribe(
+        (response) => {
 
-  submitForm(){
-    if(this.registerForm.valid){
-      this.msgError = "";
-      this.mostrarMsgError = false;
-      this.registerForm.reset();
-      this.router.navigateByUrl("/login");
-    } else {
-      this.registerForm.markAllAsTouched();
-      this.mostrarMsgError = true;
-      this.msgError = "Por favor verifique completar todos los campos correctamente.";
+          this.router.navigate(['/login']);
+
+        },
+        (error) => {
+          this.mostrarMsgError = true;
+          this.msgError = 'Error al registrar: ' + error.message;
+        }
+      );
     }
-  }
-
-  // Getters
-  get name(){
-    return this.registerForm.controls.name;
-  }
-  get birthDate(){
-    return this.registerForm.controls.birthDate;
-  }
-  get email(){
-    return this.registerForm.controls.email;
-  }
-  get password(){
-    return this.registerForm.controls.password;
   }
 }

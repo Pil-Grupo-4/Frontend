@@ -1,5 +1,6 @@
 ﻿using ArgBrokerAPI.Models;
 using ArgBrokerAPI.Models.DTOs;
+using ArgBrokerAPI.Models.Entities;
 using ArgBrokerAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Plugins;
@@ -21,9 +22,9 @@ namespace ArgBrokerAPI.Controllers
 
         // GET: api/<UsuarioController>
         [HttpGet]
-        public async Task<IActionResult>GetAllUsers()
+        public async Task<IActionResult> GetAllUsers()
         {
-           var UsersList = await _userService.GetAllUsers();
+            var UsersList = await _userService.GetAllUsers();
             return Ok(UsersList);
         }
 
@@ -35,10 +36,27 @@ namespace ArgBrokerAPI.Controllers
                 var user = await _userService.LogginUser(userLoginDto);
                 return Ok(user);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }
+
+        // POST api/<UsuarioController>
+        [HttpPost]
+        public async Task<ActionResult<Usuario>> PostUser([FromBody] Usuario newUser)
+        {
+            var postUser = await _userService.PostNewUser(newUser);
+            return postUser;  //este llama al metodo GetUser y nos devuelve el usuario recien creado
+        }
+
+        [HttpPut("{id}")]
+        public async Task<Usuario> PutAsync(int id, [FromBody] Usuario putUser)
+        {
+            var user = await _userService.PutUser(putUser, id);
+            return user;
+        }
+
 
     }
 }

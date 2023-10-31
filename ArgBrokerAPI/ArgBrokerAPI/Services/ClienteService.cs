@@ -5,6 +5,7 @@ namespace ArgBrokerAPI.Services
     public interface ClienteService
     {
         Task<decimal> GetDineroByClientId(int idCliente);
-        Task<Cliente> RegisterNewClient(Cliente newCliente);
+        Task<Cliente> RegisterNewClient(Usuario newUsuario);
+        Task<Cliente> GetClienteById(int idCliente);
     }
 }

@@ -54,14 +54,18 @@ namespace ArgBrokerAPI.Migrations
                     b.Property<double>("Cantidad")
                         .HasColumnType("float");
 
-                    b.Property<int>("Comision")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Comision")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdCliente")
                         .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
@@ -71,6 +75,8 @@ namespace ArgBrokerAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCompra");
+
+                    b.HasIndex("IdCliente");
 
                     b.ToTable("Compras");
                 });
@@ -123,6 +129,17 @@ namespace ArgBrokerAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("ArgBrokerAPI.Models.Entities.Compra", b =>
+                {
+                    b.HasOne("ArgBrokerAPI.Models.Entities.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

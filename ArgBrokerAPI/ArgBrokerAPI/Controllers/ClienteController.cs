@@ -14,21 +14,11 @@ namespace ArgBrokerAPI.Controllers
         {
             _clienteService = clienteService;
         }
-        // POST api/<UsuarioController>
-        [HttpPost]
-        public async Task<ActionResult<Cliente>> PostClient([FromBody] Cliente newClient)
+        [HttpGet("dineroByClient/{clientid}")]
+        public async Task<ActionResult<decimal>> GetCompras(int clientid)
         {
-            try
-            {
-                var postUser = await _clienteService.RegisterNewClient(newClient);
-                return postUser;
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Hubo un error al crear el cliente: {ex.Message}");
-
-            }
-
+            return await _clienteService.GetDineroByClientId(clientid);
         }
+
     }
 }

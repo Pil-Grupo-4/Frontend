@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5mOy3fwaOihzL/5RP8liZAEVfZt3EP4nik8ksx0vLHP6WPcG+VAjDJixEBWGdkn/gnUwnrYcI45AeM1oGHy5CQ==",
+  "dgSpecHash": "gQqDGJ2D/R5N5OoyKB9oCQTt3BgZtH0beYsHocq0HC0+avUILaY3UaYI2Qv62O8XkuRO/cdIu9GZvRMs5f8HgQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
+  "projectFilePath": "C:\\Users\\Juani\\Desktop\\Kd Soft\\ISPC\\repositorio\\Frontend\\ArgBrokerAPI\\ArgBrokerAPI\\ArgBrokerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Juani\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -121,7 +121,8 @@
     "C:\\Users\\Juani\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Juani\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Juani\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Juani\\.nuget\\packages\\newtonsoft.json.schema\\3.0.15\\newtonsoft.json.schema.3.0.15.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\nuget.common\\6.6.1\\nuget.common.6.6.1.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\nuget.configuration\\6.6.1\\nuget.configuration.6.6.1.nupkg.sha512",
     "C:\\Users\\Juani\\.nuget\\packages\\nuget.dependencyresolver.core\\6.6.1\\nuget.dependencyresolver.core.6.6.1.nupkg.sha512",

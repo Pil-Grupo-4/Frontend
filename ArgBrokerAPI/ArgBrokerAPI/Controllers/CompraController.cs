@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ArgBrokerAPI.DataSet;
 using ArgBrokerAPI.Services;
 using ArgBrokerAPI.Models.Entities;
+using ArgBrokerAPI.Models.DTOs;
+using ArgBrokerAPI.Models;
 
 namespace ArgBrokerAPI.Controllers
 {
@@ -19,46 +18,43 @@ namespace ArgBrokerAPI.Controllers
 
         public CompraController(CompraService compraService)
         {
-            _compraService = compraService ;
+            _compraService = compraService;
         }
 
 
-     /*   // GET: api/<CompraController>
-        [HttpGet]
-        public async Task<IActionResult> GetAllCompras()
+        /*   // GET: api/<CompraController>
+           [HttpGet]
+           public async Task<IActionResult> GetAllCompras()
+           {
+               var UsersList = await _compraService.GetAllCompras();
+               return Ok(UsersList);
+           }
+        */
+
+
+        [HttpGet("ComprasByClient/{clientid}")]
+        public async Task<ActionResult<List<Compra>>> GetCompras(decimal clientid)
         {
-            var UsersList = await _compraService.GetAllCompras();
-            return Ok(UsersList);
-        }
-     */
-        // GET api/<CompraController>/5
-        [HttpGet("{id}")]
-        public string GetAllCompras(int id)
-        {
-            return "value";
+            return await _compraService.GetCompras(clientid);
         }
 
         // POST api/<CompraController>
         [HttpPost("registro-compra")]
-        public async Task<ActionResult<Compra>> PostUser([FromBody] Compra newCompra)
+        public async Task<ActionResult<Compra>> PostUser([FromBody] CompraPostDTO newCompra)
         {
             try
             {
                 var postCompra = await _compraService.PostNewCompra(newCompra);
                 return postCompra;
             }
+            catch (ErrorApi apiException)
+            {
+                return StatusCode(apiException.StatusCode, apiException.Content);
+            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
-
-        // PUT api/<UsuarioController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
     }
 }
